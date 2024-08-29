@@ -46,4 +46,10 @@ public class BoardController {
         Board board = boardRepository.findById(id);
         return new ApiUtil<>(board);
     }
+
+    @GetMapping("/test")
+    public ApiUtil<?> test() throws InterruptedException {
+        Thread.sleep(10000);
+        return new ApiUtil<>("test");
+    }
 }
