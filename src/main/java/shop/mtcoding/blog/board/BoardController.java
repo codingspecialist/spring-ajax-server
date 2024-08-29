@@ -49,7 +49,7 @@ public class BoardController {
 
     @GetMapping("/test")
     public ApiUtil<?> test() throws InterruptedException {
-        Thread.sleep(10000);
+        Thread.sleep(5000);
         return new ApiUtil<>("test");
     }
 }
