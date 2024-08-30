@@ -15,6 +15,11 @@ public class BoardController {
     @Autowired
     private BoardRepository boardRepository;
 
+    @RequestMapping(value = "/hello", method = RequestMethod.GET, produces = "text/plain")
+    public String hello(){
+        return "<h1>hello</h1>";
+    }
+
     @PutMapping("/board/{id}")
     public ApiUtil<?> update(@PathVariable("id") int id, @RequestBody BoardRequest.UpdateDTO updateDTO) {
         Board board = boardRepository.updateById(updateDTO, id);
@@ -27,6 +32,8 @@ public class BoardController {
         return new ApiUtil<>(null);
     }
 
+    // { "title":"머시기", "content":"머시기"}
+    // title=머시기&content=머시기
     @PostMapping("/board")
     public ApiUtil<?> save(@RequestBody BoardRequest.SaveDTO saveDTO) { // 스프링 기본전략 = x-www-form-urlencoded 파싱
         Board board = boardRepository.save(saveDTO.toEntity());
@@ -49,7 +56,7 @@ public class BoardController {
 
     @GetMapping("/test")
     public ApiUtil<?> test() throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         return new ApiUtil<>("test");
     }
 }
